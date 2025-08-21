@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import apiService from '../services/api';
-import { 
-  UsersIcon, 
-  UserIcon, 
-  OfficeBuildingIcon 
-} from '@heroicons/react/outline';
+import { FaUsers, FaUser  } from "react-icons/fa";
+import { Building2 } from "lucide-react";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -43,7 +40,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-blue-100 text-blue-600">
-                  <UsersIcon className="h-8 w-8" />
+                  <FaUsers className="h-8 w-8" />
                 </div>
                 <div className="ml-4">
                   <p className="text-2xl font-semibold text-gray-900">
@@ -57,7 +54,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-green-100 text-green-600">
-                  <UserIcon className="h-8 w-8" />
+                  <FaUser className="h-8 w-8" />
                 </div>
                 <div className="ml-4">
                   <p className="text-2xl font-semibold text-gray-900">
@@ -71,7 +68,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-purple-100 text-purple-600">
-                  <OfficeBuildingIcon className="h-8 w-8" />
+                  <Building2  className="h-8 w-8" />
                 </div>
                 <div className="ml-4">
                   <p className="text-2xl font-semibold text-gray-900">Admin</p>
@@ -88,7 +85,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-blue-100 text-blue-600">
-                  <UsersIcon className="h-8 w-8" />
+                  <FaUser className="h-8 w-8" />
                 </div>
                 <div className="ml-4">
                   <p className="text-2xl font-semibold text-gray-900">
@@ -102,7 +99,7 @@ const Dashboard = () => {
             <div className="card">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-orange-100 text-orange-600">
-                  <OfficeBuildingIcon className="h-8 w-8" />
+                  <Building2 className="h-8 w-8" />
                 </div>
                 <div className="ml-4">
                   <p className="text-2xl font-semibold text-gray-900">Manager</p>
@@ -117,7 +114,7 @@ const Dashboard = () => {
         return (
           <div className="card">
             <div className="text-center">
-              <UserIcon className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+              <FaUser className="h-16 w-16 mx-auto text-gray-400 mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 Employee Dashboard
               </h3>
