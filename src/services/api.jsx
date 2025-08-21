@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://16.171.134.197/api';
+const API_BASE_URL = 'https://www.athishulleri.online/api';
 
 
 class ApiService {
