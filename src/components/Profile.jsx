@@ -119,6 +119,9 @@ const Profile = () => {
     );
   }
 
+  // 🚨 Block editing if role is employee
+  const isEmployee = formData.role?.toLowerCase() === "employee";
+
   return (
     <div className="max-w-3xl mx-auto px-4">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">My Profile</h1>
@@ -152,7 +155,7 @@ const Profile = () => {
               <PiUserCirclePlusFill className="w-28 h-28 text-gray-300" />
             )}
 
-            {isEditing && (
+            {isEditing && !isEmployee && (
               <label className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">
                 <input
                   type="file"
@@ -176,7 +179,7 @@ const Profile = () => {
             <input
               type="text"
               value={formData.first_name}
-              disabled={!isEditing}
+              disabled={!isEditing || isEmployee}
               onChange={(e) => handleChange("first_name", e.target.value)}
               className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
             />
@@ -195,7 +198,7 @@ const Profile = () => {
             <input
               type="text"
               value={formData.last_name}
-              disabled={!isEditing}
+              disabled={!isEditing || isEmployee}
               onChange={(e) => handleChange("last_name", e.target.value)}
               className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
             />
@@ -253,7 +256,7 @@ const Profile = () => {
             <input
               type="tel"
               value={formData.phone}
-              disabled={!isEditing}
+              disabled={!isEditing || isEmployee}
               onChange={(e) => handleChange("phone", e.target.value)}
               className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
             />
@@ -272,7 +275,7 @@ const Profile = () => {
             <input
               type="text"
               value={formData.department}
-              disabled={!isEditing}
+              disabled={!isEditing || isEmployee}
               onChange={(e) => handleChange("department", e.target.value)}
               className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
             />
@@ -289,14 +292,12 @@ const Profile = () => {
           <label className="block text-sm font-semibold text-gray-600">Bio</label>
           <textarea
             value={formData.profile.bio}
-            disabled={!isEditing}
+            disabled={!isEditing || isEmployee}
             onChange={(e) => handleChange("bio", e.target.value, true)}
             className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
           />
           {validationErrors.bio && (
-            <p className="text-red-500 text-sm mt-1">
-              {validationErrors.bio}
-            </p>
+            <p className="text-red-500 text-sm mt-1">{validationErrors.bio}</p>
           )}
         </div>
 
@@ -307,7 +308,7 @@ const Profile = () => {
           </label>
           <textarea
             value={formData.profile.address}
-            disabled={!isEditing}
+            disabled={!isEditing || isEmployee}
             onChange={(e) => handleChange("address", e.target.value, true)}
             className="w-full mt-1 rounded-lg border-gray-300 p-2 shadow-sm focus:ring-2 focus:ring-blue-500"
           />
@@ -326,7 +327,7 @@ const Profile = () => {
           <input
             type="date"
             value={formData.profile.date_of_birth}
-            disabled={!isEditing}
+            disabled={!isEditing || isEmployee}
             onChange={(e) =>
               handleChange("date_of_birth", e.target.value, true)
             }
@@ -341,34 +342,38 @@ const Profile = () => {
 
         {/* Actions */}
         <div className="flex justify-end space-x-4">
-          {isEditing ? (
+          {!isEmployee && (
             <>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsEditing(false);
-                  fetchProfile();
-                }}
-                className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-md"
-                disabled={saving}
-              >
-                {saving ? "Saving..." : "Update Profile"}
-              </button>
+              {isEditing ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false);
+                      fetchProfile();
+                    }}
+                    className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                    disabled={saving}
+                  >
+                    {saving ? "Saving..." : "Update Profile"}
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setIsEditing(true)}
+                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-md"
+                >
+                  Edit Profile
+                </button>
+              )}
             </>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setIsEditing(true)}
-              className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-md"
-            >
-              Edit Profile
-            </button>
           )}
         </div>
       </form>
