@@ -3,11 +3,16 @@
 A full-stack **ERP User & Role Management Application** built with **Django REST Framework (Backend)** and **React + Vite (Frontend)**.  
 It implements **Role-Based Access Control (RBAC)** where **Admins, Managers, and Employees** have different access levels.  
 
-Live Links:  
-- 🌐 **Frontend (Vercel):** [ERP Frontend](https://erp-frontend-nvisust.vercel.app/)  
-- ⚙️ **Backend (AWS EC2 + SSL):** [ERP API](https://www.athishulleri.online/)  
 
 ---
+Live Links:  
+🔗 Frontend (Live): https://erp-frontend-nvisust.vercel.app/
+
+🔗 Backend API (AWS EC2 with SSL & domain): https://www.athishulleri.online/api/
+
+🔗 Backend git repo: https://github.com/athishulleri01/ERP_BACKEND_NVISUST.git
+
+
 
 ## 🚀 Features
 
